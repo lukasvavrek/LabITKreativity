@@ -4,20 +4,19 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detaily</h1>
 
 <div>
-    <h4>Book</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
+            Názov
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Author)
+            Autor
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Author)
@@ -29,13 +28,13 @@
             @Html.DisplayFor(model => model.ISBN)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StorageNumber)
+            Čislo skladovej karty
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.StorageNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+            Cena
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Price)
@@ -43,6 +42,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Uprav</a> |
+    <a asp-action="Index">Naspäť na zoznam</a>
 </div>
