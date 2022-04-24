@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SkladUcebnic.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Zoznam učebníc</h1>
+
+<p>
+    <a asp-action="Create">Pridaj učebnicu</a>
+</p>
+<form asp-controller="Books" asp-action="Index">
+    <p>
+        Názov: <input type="text" name="SearchString" />
+        <input type="submit" value="Vyhľadaj" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Názov
+            </th>
+            <th>
+                Autor
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </th>
+            <th>
+                Číslo skladovej karty
+            </th>
+            <th>
+                Cena
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StorageNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)€
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Uprav</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detaily</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Odstráň</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
