@@ -1,0 +1,26 @@
+input[type="submit"] {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+     padding: 10px 15px;
+     background-color: $btn-delete;
+     border-radius: 10px;
+     border: none;
+        &:hover, &:focus{
+            color: lighten(white, 10);
+            background-color: darken($test, 20);
+    }
+}
+.button {
+    text-decoration: none;
+    color: white;
+    margin-top: 200px;
+     padding: 10px 15px;
+     background-color: $test;
+     border-radius: 10px;
+        &:hover, &:focus{
+            color: lighten(white, 10);
+            background-color: darken($test, 20);
+    }
+}

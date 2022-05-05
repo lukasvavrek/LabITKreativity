@@ -3,8 +3,10 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-
+@section links{
+   <link rel="stylesheet" href="~/css/Books-Create-Base.css" asp-append-version="true" />
+}
+<h1>pridaj učebnicu do zoznamu</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -42,7 +44,7 @@
     </div>
 </div>
 
-<div>
+<div class="button">
     <a asp-action="Index">Naspäť na zoznam</a>
 </div>
 

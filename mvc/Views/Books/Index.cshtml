@@ -3,11 +3,14 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+@section links{
+   <link rel="stylesheet" href="~/css/Books-Index-Base.css" asp-append-version="true" />
+}
+<div class="center">
 <h1>Zoznam učebníc</h1>
 
 <p>
-    <a asp-action="Create">Pridaj učebnicu</a>
+    <a class="btn-not-tbl" asp-action="Create">Pridaj učebnicu</a>
 </p>
 <form asp-controller="Books" asp-action="Index">
     <p>
@@ -15,6 +18,7 @@
         <input type="submit" value="Vyhľadaj" />
     </p>
 </form>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -40,7 +44,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                <a class="details" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Author)
@@ -55,9 +59,8 @@
                 @Html.DisplayFor(modelItem => item.Price)€
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Uprav</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detaily</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Odstráň</a>
+        
+                <a class="btn-tbl" asp-action="Delete" asp-route-id="@item.Id">Odstráň</a>
             </td>
         </tr>
 }

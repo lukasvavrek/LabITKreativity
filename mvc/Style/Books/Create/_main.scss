@@ -1,0 +1,42 @@
+h1{
+    text-transform: uppercase;
+    font-weight: 700;
+}
+label{
+    font-weight: 700;
+}
+.form-group{
+    margin-bottom: 20px;
+}
+.button a{
+    text-decoration: none;
+    color: white;
+
+     padding: 10px 15px;
+     background-color: $test;
+     border-radius: 10px;
+        &:hover, &:focus{
+            color: lighten(white, 10);
+            background-color: darken($test, 20);
+    }
+}
+input[type="submit"] {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+     padding: 10px 15px;
+     background-color: $test;
+     border-radius: 10px;
+     border: none;
+        &:hover, &:focus{
+            color: lighten(white, 10);
+            background-color: darken($test, 20);
+    }
+}
+.form-controll:focus{
+    outline: none;
+}
+span{
+    margin-top: none;
+}

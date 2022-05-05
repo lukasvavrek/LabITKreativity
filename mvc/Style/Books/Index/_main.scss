@@ -1,0 +1,92 @@
+ table{
+    border-collapse: collapse;
+    border-radius: 5px;
+
+ }
+ table th:first-child {
+    border-radius: 10px 0 0 0 ;
+  }
+  table th:last-child {
+    border-radius: 0 10px 0 0 ;
+  }
+  table tr:last-child td:first-child {
+    border-radius: 0 0 0 10px ;
+  }
+  table tr:last-child td:last-child {
+    border-radius: 0 0 10px 0 ;
+  }
+
+ td, th{
+     max-width: 458px;
+     text-align: center;
+        vertical-align: middle;
+ }
+ .btn-tbl{
+    text-decoration: none;
+    color: white;
+
+     padding: 5px 10px;
+     background-color: $test;
+     border-radius: 10px;
+    &:hover, &:focus{
+        color: lighten(white, 10);
+        background-color: darken($test, 20);
+    }
+ }
+ .center{
+     text-align: center;
+     h1{
+         text-transform:uppercase;
+         font-weight: 700;
+     }
+ }
+ p:first-of-type{
+    margin: 40px 0;
+ }
+ .btn-not-tbl{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: white;
+
+    
+     padding: 18px 23px;
+     background-color: $test;
+     border-radius: 16px;
+    &:hover, &:focus{
+        color: lighten(white, 10);
+        background-color: darken($test, 20);
+    }
+     
+ }
+ thead tr{
+    color: $txt-color;
+    background-color: $tbl-header-color;
+    th:nth-child(even){
+        background-color: $test;
+    }
+    th:last-child{
+        background-color: $tbl-header-color;
+    }
+}
+tbody tr{
+    background-color: $tbl-bdy-light;
+    &:hover, &:focus{
+        background-color: darken($tbl-bdy-light, 5);
+    }
+    &:nth-child(even){
+        background-color: $tbl-bdy-dark;
+        &:hover, &:focus{
+            background-color: darken($tbl-bdy-dark, 5);
+        }
+    }
+ 
+}
+.details{
+    text-decoration: none;
+    color: #212529;
+    &:hover, &:focus{
+        color: $btn-delete;
+    }
+}
