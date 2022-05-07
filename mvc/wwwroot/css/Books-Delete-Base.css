@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+input[type="submit"] {
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 10px 15px;
+  background-color: #dc3545;
+  border-radius: 10px;
+  border: none;
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus {
+  color: white;
+  background-color: #18242f;
+}
+
+.button {
+  text-decoration: none;
+  color: white;
+  margin-top: 200px;
+  padding: 10px 15px;
+  background-color: #3b5772;
+  border-radius: 10px;
+}
+
+.button:hover, .button:focus {
+  color: white;
+  background-color: #18242f;
+}
+/*# sourceMappingURL=Books-Delete-Base.css.map */

@@ -3,47 +3,84 @@
 @{
     ViewData["Title"] = "Delete";
 }
-
-
-<h3>Ste si istý že chcete odstrániť túto knihu zo zoznamu?</h3>
+@section links{
+   <link rel="stylesheet" href="~/css/Books-Details-Base.css" asp-append-version="true" />
+   <link rel="stylesheet" href="~/css/Books-Delete-Base.css" asp-append-version="true" />
+   
+}
+<h1>Ste si istý že chcete odstrániť túto knihu zo zoznamu?</h1>
 <div>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            Názov
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            Autor
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ISBN)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ISBN)
-        </dd>
-        <dt class = "col-sm-2">
-            Čislo skladovej karty
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StorageNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            Cena
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-    </dl>
+    <table class="table">
+         <tr>
+             <td>
+                  Názov
+             </td>
+             <td>
+                 @Html.DisplayFor(model => model.Title)
+             </td>
+         </tr>
+         <tr>
+             <td>
+                  Autor
+             </td>
+             <td>
+                 @Html.DisplayFor(model => model.Author)
+             </td>
+         </tr>
+         <tr>
+             <td>
+                  @Html.DisplayNameFor(model => model.ISBN)
+             </td>
+             <td>
+                @Html.DisplayFor(model => model.ISBN)
+             </td>
+         </tr>
+         <tr>
+             <td>
+                  Čislo skladovej karty
+             </td>
+             <td>
+                @Html.DisplayFor(model => model.StorageNumber)
+             </td>
+         </tr>
+         <tr>
+             <td>
+                  Cena
+             </td>
+             <td>
+                 @Html.DisplayFor(model => model.Price)€
+             </td>
+         </tr>
+         <tr>
+             <td>
+                  Počet kníh
+             </td>
+             <td>
+                732
+             </td>
+         </tr>
+         <tr>
+             <td>
+                  Na sklade
+             </td>
+             <td>
+                 666
+             </td>
+         </tr>
+         <tr>
+             <td>
+                  Vypočižané
+             </td>
+             <td>
+                 66
+             </td>
+         </tr>
+    </table>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Odstráň" class="btn btn-danger" /> |
-        <a asp-action="Index">Naspäť na zoznam</a>
+        <input type="submit" value="Odstráň" class="btn btn-danger" /> 
+        <a class="button" asp-action="Index">Naspäť na zoznam</a>
     </form>
 </div>

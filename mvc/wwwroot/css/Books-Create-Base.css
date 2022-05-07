@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+h1 {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+label {
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.button a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  background-color: #3b5772;
+  border-radius: 10px;
+}
+
+.button a:hover, .button a:focus {
+  color: white;
+  background-color: #18242f;
+}
+
+input[type="submit"] {
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 10px 15px;
+  background-color: #3b5772;
+  border-radius: 10px;
+  border: none;
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus {
+  color: white;
+  background-color: #18242f;
+}
+
+.form-controll:focus {
+  outline: none;
+}
+
+span {
+  margin-top: none;
+}
+
+body {
+  background-color: #f1f0f0;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+/*# sourceMappingURL=Books-Create-Base.css.map */

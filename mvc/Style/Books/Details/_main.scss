@@ -1,0 +1,91 @@
+h1{
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 0.5;
+    margin: 35px 0 0 0;
+}
+tr:nth-child(even){ 
+    td:first-of-type{
+        background-color: $tbl-header-color;
+        max-width: 100px;
+        color: $txt-color;
+        font-weight: 700;
+    }
+}
+tr:nth-child(odd){ 
+    td:first-of-type{
+        background-color: $test;
+        max-width: 100px;
+        color: $txt-color;
+        font-weight: 700;
+    }
+}
+tr:nth-child(even){ 
+    td:nth-of-type(2){
+        background-color: $tbl-bdy-dark;
+    }
+}
+tr:nth-child(odd){ 
+    td:nth-of-type(2){
+        background-color: $tbl-bdy-light;
+    }
+}
+table tr:first-child td:first-child {
+    border-radius: 10px 0 0 0 ;
+  }
+  table tr:first-child td:last-child{
+    border-radius: 0 10px 0 0 ;
+  }
+  table tr:last-child td:first-child {
+    border-radius: 0 0 0 10px ;
+  }
+  table tr:last-child td:last-child {
+    border-radius: 0 0 10px 0 ;
+  }
+table{
+    max-width: 700px;
+}
+body{
+    font-family:'Source Sans Pro', sans-serif;
+    background-color: $bcg-color;
+}
+.container{
+    margin-left: 10%;
+}   
+ .buttons{
+     a:nth-of-type(2){
+         margin: 0 10px 0 10px;
+     }  
+    a{
+    text-decoration: none;
+    color: white;
+
+     padding: 10px 15px;
+     background-color: $test;
+     border-radius: 10px;
+        &:hover, &:focus{
+            color: lighten(white, 10);
+            background-color: darken($test, 20);
+    }
+  }
+}
+
+img{
+    max-width: 700px;
+    max-height: 700px;
+    align-self: center;
+}
+
+.grid_container{
+    display: grid;
+    grid-template-columns: 700px 1fr;
+}
+.flex_container{
+    margin-top: 32px;
+    margin-left: 12em;
+
+    a{
+        width: 500px;
+        height: 700px;
+    }
+}
