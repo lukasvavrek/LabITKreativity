@@ -21,7 +21,10 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
-    await SeedData.Initialize(services);
+    var dbContext = services.GetRequiredService<SkladUcebnicContext>();
+    
+    await Database.Migrate(dbContext);
+    await SeedData.Initialize(dbContext);
 }
 
 // Configure the HTTP request pipeline.

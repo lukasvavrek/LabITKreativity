@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using SkladUcebnic.Models;
 
 namespace SkladUcebnic.Data
 {
     public static class SeedData
     {
-        public static async Task Initialize(IServiceProvider serviceProvider)
+        public static async Task Initialize(SkladUcebnicContext dbContext)
         {
-            var contextOptions = serviceProvider.GetRequiredService<DbContextOptions<SkladUcebnicContext>>();
-            await using var dbContext = new SkladUcebnicContext(contextOptions);
-            
             if (await DbAlreadySeeded(dbContext))
             {
                 return; 
