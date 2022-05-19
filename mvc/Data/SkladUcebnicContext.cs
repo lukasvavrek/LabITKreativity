@@ -1,8 +1,4 @@
 ﻿#nullable disable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SkladUcebnic.Models;
 
@@ -15,6 +11,16 @@ namespace SkladUcebnic.Data
         {
         }
 
-        public DbSet<SkladUcebnic.Models.Book> Book { get; set; }
+        public DbSet<Book> Book { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<BookOrder> BookOrder { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // composite primary key
+            modelBuilder
+                .Entity<BookOrder>()
+                .HasKey(x => new { x.BookId, x.OrderId });
+        }
     }
 }
