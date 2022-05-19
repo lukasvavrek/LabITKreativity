@@ -1,12 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using SkladUcebnic.Data;
-using SkladUcebnic.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<SkladUcebnicContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SkladUcebnicContext") ?? throw new InvalidOperationException("Connection string 'SkladUcebnicContext' not found.")));
+var dbConnectionString = builder.Configuration.GetConnectionString("SkladUcebnicContext")
+                         ?? throw new InvalidOperationException("Connection string 'SkladUcebnicContext' not found.");
+builder.Services.AddDbContext<SkladUcebnicContext>(options => options.UseSqlServer(dbConnectionString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -17,7 +21,7 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
-    SeedData.Initialize(services);
+    await SeedData.Initialize(services);
 }
 
 // Configure the HTTP request pipeline.
