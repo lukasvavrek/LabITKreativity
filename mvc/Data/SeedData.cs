@@ -93,6 +93,26 @@ namespace SkladUcebnic.Data
                         Quantity = 15,
                     }
                 }
+            },
+            new Order
+            {
+                ClassIdentifier = "2.B",
+                OrderedAt = DateTime.Today,
+                OrderedBy = "Anton Murín",
+                OrderState = OrderState.New,
+                BookOrders = new List<BookOrder>
+                {
+                    new BookOrder
+                    {
+                        Book = Books[2],
+                        Quantity = 7,
+                    },
+                    new BookOrder
+                    {
+                        Book = Books[3],
+                        Quantity = 9,
+                    }
+                }
             }
         };
     }
