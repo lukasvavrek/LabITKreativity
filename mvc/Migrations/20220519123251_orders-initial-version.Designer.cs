@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkladUcebnic.Data;
 
@@ -11,9 +12,10 @@ using SkladUcebnic.Data;
 namespace SkladUcebnic.Migrations
 {
     [DbContext(typeof(SkladUcebnicContext))]
-    partial class SkladUcebnicContextModelSnapshot : ModelSnapshot
+    [Migration("20220519123251_orders-initial-version")]
+    partial class ordersinitialversion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

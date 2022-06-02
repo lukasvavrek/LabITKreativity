@@ -1,6 +1,6 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
 namespace SkladUcebnic.Models
 {
     public class Book
@@ -16,12 +16,12 @@ namespace SkladUcebnic.Models
         [Required]
         public string ISBN  { get; set; }
 
-
         [StringLength(8)]
         [Required]
         public string StorageNumber { get; set; }
 
-        
         public decimal Price { get; set; }
+        
+        public List<BookOrder> BookOrders { get; set; }
     }
 }
