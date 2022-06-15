@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FastMember;
+using LINQtoCSV;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SkladUcebnic.Models;
 
@@ -8,14 +11,42 @@ namespace SkladUcebnic.Data
 {
     public static class SeedData
     {
+        public static async Task ImportCSVFile(SkladUcebnicContext dbContext)
+        {
+            var csvFile = @"wwwroot/csv/list.csv";
+            var cc = new CsvContext();
+
+            var csvFileDescription = new CsvFileDescription()
+            {
+                SeparatorChar = ',',
+                FirstLineHasColumnNames = true
+            };
+
+            var books = cc.Read<Book>(csvFile, csvFileDescription).ToList();
+
+            using (var sqlBulk = new SqlBulkCopy("Server=(localdb)\\mssqllocaldb;Database=SkladUcebnicContext-6e81ebcd-c2c2-415f-9c8d-81eddcc5f9ef;Trusted_Connection=True;MultipleActiveResultSets=true"))
+            {
+                using (var reader = ObjectReader.Create(books))
+                {
+                    sqlBulk.BatchSize = 1000;
+                    sqlBulk.DestinationTableName = "Book";
+                    sqlBulk.ColumnMappings.Add("Title", "Title");
+                    sqlBulk.ColumnMappings.Add("Author", "Author");
+                    sqlBulk.ColumnMappings.Add("ISBN", "ISBN");
+                    sqlBulk.ColumnMappings.Add("StorageNumber", "StorageNumber");
+                    sqlBulk.ColumnMappings.Add("Price", "Price");
+                    sqlBulk.WriteToServer(reader);
+                }
+            }
+        }
         public static async Task Initialize(SkladUcebnicContext dbContext)
         {
             if (await DbAlreadySeeded(dbContext))
             {
-                return; 
+                return;
             }
 
-            await SeedBooks(dbContext);
+            await ImportCSVFile(dbContext);
             await SeedOrders(dbContext);
 
             await dbContext.SaveChangesAsync();
