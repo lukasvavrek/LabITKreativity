@@ -30,19 +30,20 @@
 
     <h2 class="my-3">Knihy</h2>
     <div class="card-group">
-        @foreach (var bookOrder in Model.BookOrders)
+        @for (var i = 0; i < Model.BookOrders.Count; i++)
         {
             <div class="card my-1" style="max-width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">@bookOrder.Book.Title</h5>
-                    <p class="card-text">@bookOrder.Book.ISBN</p>
-                    <p class="card-text">@bookOrder.Book.Price eur</p>
-                    <p class="card-text"><small class="text-muted"> Napísal: @bookOrder.Book.Author</small></p>
+                    <h5 class="card-title">@Model.BookOrders[i].Book.Title</h5>
+                    <p class="card-text">@Model.BookOrders[i].Book.ISBN</p>
+                    <p class="card-text">@Model.BookOrders[i].Book.Price eur</p>
+                    <p class="card-text"><small class="text-muted"> Napísal: @Model.BookOrders[i].Book.Author</small></p>
                 </div>
                 <div class="card-footer">
                     <div class="form-floating">
-                        <input asp-for="@bookOrder.Quantity" type="number" class="form-control" id="pocet+@bookOrder.BookId" placeholder="Počet" aria-label="Text input with checkbox">
-                        <label for="pocet+@bookOrder.BookId">Pocet</label>
+                        <input type="hidden" asp-for="@Model.BookOrders[i].BookId" />
+                        <input asp-for="@Model.BookOrders[i].Quantity" type="number" class="form-control" id="pocet+@Model.BookOrders[i].BookId" placeholder="Počet" aria-label="Text input with checkbox">
+                        <label for="pocet+@Model.BookOrders[i].BookId">Pocet</label>
                     </div>
                     <div class="input-group">
                     </div>
@@ -63,6 +64,6 @@
 
 @section Scripts {
     @{
-    await Html.RenderPartialAsync("_ValidationScriptsPartial");
-}
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
