@@ -1,0 +1,69 @@
+﻿@model SkladUcebnic.Models.Order
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Vytvor objednavku</h1>
+<hr />
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="my-3">Zakladne udaje</h2>
+            <div class="card p-3 bg-light">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ClassIdentifier" class="control-label">Trieda</label>
+                    <input asp-for="ClassIdentifier" class="form-control" />
+                    <span asp-validation-for="ClassIdentifier" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OrderedBy" class="control-label">Objednavatel</label>
+                    <input asp-for="OrderedBy" class="form-control" />
+                    <span asp-validation-for="OrderedBy" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <h2 class="my-3">Knihy</h2>
+    <div class="card-group">
+        @for (var i = 0; i < Model.BookOrders.Count; i++)
+        {
+            <div class="card my-1" style="max-width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.BookOrders[i].Book.Title</h5>
+                    <p class="card-text">@Model.BookOrders[i].Book.ISBN</p>
+                    <p class="card-text">@Model.BookOrders[i].Book.Price eur</p>
+                    <p class="card-text"><small class="text-muted"> Napísal: @Model.BookOrders[i].Book.Author</small></p>
+                </div>
+                <div class="card-footer">
+                    <div class="form-floating">
+                        <input type="hidden" asp-for="@Model.BookOrders[i].BookId" />
+                        <input asp-for="@Model.BookOrders[i].Quantity" type="number" class="form-control" id="pocet+@Model.BookOrders[i].BookId" placeholder="Počet" aria-label="Text input with checkbox">
+                        <label for="pocet+@Model.BookOrders[i].BookId">Pocet</label>
+                    </div>
+                    <div class="input-group">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="row justify-content-end">
+        <div class="button col-auto align">
+            <a asp-action="Index">Naspäť na zoznam</a>
+        </div>
+        <div class="form-group mt-2 col-auto">
+            <input type="submit" value="Vytvor objednavku" class="btn btn-primary"/>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
