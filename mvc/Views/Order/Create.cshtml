@@ -4,12 +4,12 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Vytvor objednavku</h1>
+<h1>Vytvor objednávku</h1>
 <hr />
 <form asp-action="Create">
     <div class="row">
         <div class="col-12">
-            <h2 class="my-3">Zakladne udaje</h2>
+            <h2 class="my-3">Základné údaje</h2>
             <div class="card p-3 bg-light">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -18,7 +18,7 @@
                     <span asp-validation-for="ClassIdentifier" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="OrderedBy" class="control-label">Objednavatel</label>
+                    <label asp-for="OrderedBy" class="control-label">Objednávateľ</label>
                     <input asp-for="OrderedBy" class="form-control" />
                     <span asp-validation-for="OrderedBy" class="text-danger"></span>
                 </div>
@@ -29,10 +29,10 @@
     </div>
 
     <h2 class="my-3">Knihy</h2>
-    <div class="card-group">
+    <div class="row">
         @for (var i = 0; i < Model.BookOrders.Count; i++)
         {
-            <div class="card my-1" style="max-width: 18rem;">
+            <div class="card col-sm-12 col-md-6 col-lg-3 px-0 my-2">
                 <div class="card-body">
                     <h5 class="card-title">@Model.BookOrders[i].Book.Title</h5>
                     <p class="card-text">@Model.BookOrders[i].Book.ISBN</p>
@@ -43,7 +43,7 @@
                     <div class="form-floating">
                         <input type="hidden" asp-for="@Model.BookOrders[i].BookId" />
                         <input asp-for="@Model.BookOrders[i].Quantity" type="number" class="form-control" id="pocet+@Model.BookOrders[i].BookId" placeholder="Počet" aria-label="Text input with checkbox">
-                        <label for="pocet+@Model.BookOrders[i].BookId">Pocet</label>
+                        <label for="pocet+@Model.BookOrders[i].BookId">Počet</label>
                     </div>
                     <div class="input-group">
                     </div>
@@ -57,7 +57,7 @@
             <a asp-action="Index">Naspäť na zoznam</a>
         </div>
         <div class="form-group mt-2 col-auto">
-            <input type="submit" value="Vytvor objednavku" class="btn btn-primary"/>
+            <input type="submit" value="Vytvor objednávku" class="btn btn-primary"/>
         </div>
     </div>
 </form>
