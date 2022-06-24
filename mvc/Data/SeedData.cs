@@ -11,6 +11,25 @@ namespace SkladUcebnic.Data
 {
     public static class SeedData
     {
+        public static async Task Initialize(SkladUcebnicContext dbContext)
+        {
+            if (await DbAlreadySeeded(dbContext))
+            {
+                return;
+            }
+
+            await ImportCSVFile(dbContext);
+            // await SeedBooks(dbContext);
+            await SeedOrders(dbContext);
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        private static Task<bool> DbAlreadySeeded(SkladUcebnicContext dbContext)
+        {
+            return dbContext.Book.AnyAsync();
+        }
+
         public static async Task ImportCSVFile(SkladUcebnicContext dbContext)
         {
             var csvFile = @"wwwroot/csv/list.csv";
@@ -24,44 +43,14 @@ namespace SkladUcebnic.Data
 
             var books = cc.Read<Book>(csvFile, csvFileDescription).ToList();
 
-            using (var sqlBulk = new SqlBulkCopy("Server=(localdb)\\mssqllocaldb;Database=SkladUcebnicContext-6e81ebcd-c2c2-415f-9c8d-81eddcc5f9ef;Trusted_Connection=True;MultipleActiveResultSets=true"))
-            {
-                using (var reader = ObjectReader.Create(books))
-                {
-                    sqlBulk.BatchSize = 1000;
-                    sqlBulk.DestinationTableName = "Book";
-                    sqlBulk.ColumnMappings.Add("Title", "Title");
-                    sqlBulk.ColumnMappings.Add("Author", "Author");
-                    sqlBulk.ColumnMappings.Add("ISBN", "ISBN");
-                    sqlBulk.ColumnMappings.Add("StorageNumber", "StorageNumber");
-                    sqlBulk.ColumnMappings.Add("Price", "Price");
-                    sqlBulk.WriteToServer(reader);
-                }
-            }
-        }
-        public static async Task Initialize(SkladUcebnicContext dbContext)
-        {
-            if (await DbAlreadySeeded(dbContext))
-            {
-                return;
-            }
-
-            await ImportCSVFile(dbContext);
-            await SeedOrders(dbContext);
-
-            await dbContext.SaveChangesAsync();
-        }
-
-        private static Task<bool> DbAlreadySeeded(SkladUcebnicContext dbContext)
-        {
-            return dbContext.Book.AnyAsync();
+            await dbContext.Book.AddRangeAsync(books);
         }
 
         private static async Task SeedBooks(SkladUcebnicContext dbContext)
         {
             await dbContext.Book.AddRangeAsync(Books);
         }
-        
+
         private static async Task SeedOrders(SkladUcebnicContext dbContext)
         {
             await dbContext.Order.AddRangeAsync(Orders);
