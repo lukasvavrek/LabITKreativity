@@ -1,41 +1,47 @@
-﻿@model IEnumerable<SkladUcebnic.Models.Order>
+﻿@model OrderListViewModel
 
 @{
-  ViewData["Title"] = "Order list";
+    ViewData["Title"] = "Order list";
 }
 
-<div class="row m-2">
-  <h2 class="col">Zoznam objednávok</h2>
-  <a type="button" class="btn btn-primary col-2" asp-action="Create">Pridaj objednavku</a>
-</div>
+<h2>Zoznam objednávok</h2>
+
+<form asp-controller="Order" asp-action="Index" method="get">
+    <p>
+
+        <select name="ordState" asp-for="SelectedState" asp-items="@Html.GetEnumSelectList<OrderState>()">
+            <option value="">All</option>
+        </select>
+
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 
 <div class="accordion">
-  @foreach (var order in Model)
-  {
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-        aria-expanded="true" aria-controls="collapseOne">
-          @Html.DisplayFor(x => order.OrderState)
-          @Html.DisplayFor(x => order.ClassIdentifier)
-          @Html.DisplayFor(x => order.OrderedBy)
-          @Html.DisplayFor(x => order.OrderedAt)
-        </button>
-      </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-      data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          @foreach (var bookOrder in order.BookOrders)
-          {
-            <div>
-              @Html.DisplayFor(x => bookOrder.Book.Title)
-              @Html.DisplayFor(x => bookOrder.Book.Author)
-              @Html.DisplayFor(x => bookOrder.Book.ISBN)
-              @Html.DisplayFor(x => bookOrder.Quantity)
-            </div>
-          }
+    @foreach (var order in Model.Orders)
+    {
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            @Html.DisplayFor(x => order.OrderState)
+            @Html.DisplayFor(x => order.ClassIdentifier)
+            @Html.DisplayFor(x => order.OrderedBy)
+            @Html.DisplayFor(x => order.OrderedAt)
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            @foreach (var bookOrder in order.BookOrders)
+            {
+              <div>
+                @Html.DisplayFor(x => bookOrder.Book.Title)
+                @Html.DisplayFor(x => bookOrder.Book.Author)
+                @Html.DisplayFor(x => bookOrder.Book.ISBN)
+                @Html.DisplayFor(x => bookOrder.Quantity)
+              </div>
+            }
+          </div>
         </div>
       </div>
-    </div>
-  }
+    }
 </div>

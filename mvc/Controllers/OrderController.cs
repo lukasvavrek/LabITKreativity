@@ -17,14 +17,27 @@ namespace SkladUcebnic.Controllers
             _dbContext = dbContext;
         }
 
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(string ordState)
         {
-            var orders = await _dbContext.Order
+            IQueryable<Order> orders = _dbContext.Order
                 .Include(x => x.BookOrders)
-                .ThenInclude(x => x.Book)
-                .ToListAsync();
+                .ThenInclude(x => x.Book);
 
-            return View(orders);
+            var orderStateFilterActive = Enum.TryParse(ordState, out OrderState stateToFilter);
+            
+            if (!string.IsNullOrEmpty(ordState) && orderStateFilterActive)
+            {
+                orders = orders.Where(order => order.OrderState == stateToFilter);
+            }
+
+            var orderListVM = new OrderListViewModel
+            {
+                Orders = await orders.ToListAsync(),
+                SelectedState = orderStateFilterActive ? stateToFilter : null
+            };
+
+            return View(orderListVM);
         }
 
         // GET: Orders/Create
@@ -42,13 +55,13 @@ namespace SkladUcebnic.Controllers
             if (ModelState.IsValid)
             {
                 order.BookOrders = order.BookOrders.Where(bookOrder => bookOrder.Quantity > 0).ToList();
-                
+
                 order.OrderState = OrderState.New;
                 order.OrderedAt = DateTime.Now;
 
                 await _dbContext.AddAsync(order);
                 await _dbContext.SaveChangesAsync();
-                
+
                 return RedirectToAction(nameof(Index));
             }
 
