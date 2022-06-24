@@ -5,25 +5,23 @@ footer{
     background-color: rgba(255,255,255,1);
 }
 
-#nav_bar {
-  /*  background-color: rgba(217, 217, 217, 1);*/
+#nav_bar { 
+    /*  background-color: rgba(217, 217, 217, 1);*/
     overflow: hidden;
 }
 
-    /* Style the links inside the navigation bar */
-    #nav_bar a {
-        float: left;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-    }
+/* Style the links inside the navigation bar */
+#nav_bar a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
 
-        /* Change the color of links on hover */
-        #nav_bar a:hover {
-            background-color: rgba(237, 133, 19, 0.6049);
-            color: black;
-        }
-
-        
+/* Change the color of links on hover */
+#nav_bar a:hover {
+    background-color: rgba(237, 133, 19, 0.6049);
+    color: black;
+}
