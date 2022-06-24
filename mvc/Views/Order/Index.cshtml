@@ -1,4 +1,4 @@
-﻿@model OrderStateViewModel
+﻿@model OrderListViewModel
 
 @{
     ViewData["Title"] = "Order list";
@@ -9,7 +9,7 @@
 <form asp-controller="Order" asp-action="Index" method="get">
     <p>
 
-        <select asp-for="States" asp-items="@Html.GetEnumSelectList<OrderState>()">
+        <select name="ordState" asp-for="SelectedState" asp-items="@Html.GetEnumSelectList<OrderState>()">
             <option value="">All</option>
         </select>
 
