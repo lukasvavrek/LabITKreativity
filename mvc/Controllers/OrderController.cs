@@ -78,5 +78,27 @@ namespace SkladUcebnic.Controllers
             });
             return newOrder;
         }
+
+        public async Task<IActionResult> Index(string ordState)
+        {
+            // Use LINQ to get list of orders by state
+
+            IQueryable<Order> orders = _dbContext.Order;
+
+            if (!string.IsNullOrEmpty(ordState))
+            {
+                orders = orders.Where(order => order.OrderState.ToString() == ordState);
+            }
+
+            var stateVM = new OrderStateViewModel
+            {
+                Orders = await orders.ToListAsync(),
+                States = (OrderState[])Enum.GetValues(typeof(OrderState))
+
+            };
+
+            return View(stateVM);
+
+        }
     }
 }
