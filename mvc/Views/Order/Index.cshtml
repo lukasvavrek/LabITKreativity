@@ -4,59 +4,76 @@
     ViewData["Title"] = "Order list";
 }
 
-<h2>Zoznam objednávok</h2>
+<div class="container mb-4">
+    <div class="row">
+        <div class="col">
+            <h2>Zoznam objednávok</h2>
+        </div>
+        <div class="col">
+            <a type="button" class="float-end btn btn-primary col-3" asp-action="Create">Pridaj objednávku</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <form class="d-flex" asp-controller="Order" asp-action="Index" method="get">
+                <select class="form-select" name="ordState" asp-for="SelectedState" asp-items="@Html.GetEnumSelectList<OrderState>()">
+                    <option value="">Všetky</option>
+                </select>
 
-<form asp-controller="Order" asp-action="Index" method="get">
-    <p>
+                <button class="ms-2 btn btn-secondary btn-sm" type="submit">Filter</button>
+            </form>
+        </div>
+    </div>
+</div>
 
-        <select name="ordState" asp-for="SelectedState" asp-items="@Html.GetEnumSelectList<OrderState>()">
-            <option value="">All</option>
-        </select>
-
-        <input type="submit" value="Filter" />
-    </p>
-</form>
 
 <div class="order-list">
     @foreach (var order in Model.Orders)
     {
-        <div class="container order">
+        <div class="container order border-bottom mb-2">
             <div class="row">
                 <div class="col order-info">
                     <h5>@Html.DisplayFor(x => order.ClassIdentifier)</h5>
                 </div>
                 <div class="col order-state">
-                    <span class="badge rounded-pill bg-primary">@Html.DisplayFor(x => order.OrderState)</span>
-                </div>
-                <div class="row">
-                    <div class="col">@Html.DisplayFor(x => order.OrderedBy)</div>
-                    <div class="col">@Html.DisplayFor(x => order.OrderedAt)</div>
-                    <div class="col dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu@(order.GetHashCode())" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenu@(order.GetHashCode())">
-                        <button class="dropdown-item" type="button">Action</button>
-                        <button class="dropdown-item" type="button">Another action</button>
-                        <button class="dropdown-item" type="button">Something else here</button>
-                      </div>
-                    </div>
+                    <span class="float-end badge rounded-pill bg-primary">@Html.DisplayFor(x => order.OrderState)</span>
                 </div>
             </div>
-            <div class="row book-order-list">
+            <div class="row mb-3">
+                <div class="col">@Html.DisplayFor(x => order.OrderedBy)</div>
+                <div class="col">@order.OrderedAt.ToString("dd.MM.yyyy")</div>
+                <div class="col-2">
+                    @if (order.OrderState != OrderState.Finished)
+                    {
+                        <form class="float-end" asp-controller="Order" asp-action="ChangeState" method="post">
+                            <input type="hidden" name="id" value="@order.Id"/>
+                            @if (order.OrderState == OrderState.New)
+                            {
+                                <input type="hidden" name="state" value="@OrderState.InProgress"/>
+                                <button type="submit" class="btn btn-secondary btn-sm">Začať prácu</button>
+                            }
+                            else if (order.OrderState == OrderState.InProgress)
+                            {
+                                <input type="hidden" name="state" value="@OrderState.Finished"/>
+                                <button type="submit" class="btn btn-secondary btn-sm">Dokončiť</button>
+                            }
+                        </form>
+                    }
+                </div>
+            </div>
+            <div class="row book-order-list ps-3">
                 @foreach (var bookOrder in order.BookOrders)
                 {
                     <div class="container book-order">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-11">
                                 <p>
-                                    @Html.DisplayFor(x => bookOrder.Book.Title)
-                                    <span>@Html.DisplayFor(x => bookOrder.Book.Author)</span>
+                                @Html.DisplayFor(x => bookOrder.Book.Title)
+                                <span class="book-author">@Html.DisplayFor(x => bookOrder.Book.Author)</span>
                                 <p/>
-                                
                             </div>
-                            <div class="col">
-                                @Html.DisplayFor(x => bookOrder.Quantity)                               
+                            <div class="col-1 float-end">
+                                @Html.DisplayFor(x => bookOrder.Quantity)
                             </div>
                         </div>
                     </div>

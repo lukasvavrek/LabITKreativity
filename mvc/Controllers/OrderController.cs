@@ -22,7 +22,8 @@ namespace SkladUcebnic.Controllers
         {
             IQueryable<Order> orders = _dbContext.Order
                 .Include(x => x.BookOrders)
-                .ThenInclude(x => x.Book);
+                .ThenInclude(x => x.Book)
+                .OrderByDescending(x => x.OrderedAt);
 
             var orderStateFilterActive = Enum.TryParse(ordState, out OrderState stateToFilter);
             
@@ -45,6 +46,32 @@ namespace SkladUcebnic.Controllers
         public async Task<IActionResult> Create()
         {
             return View(await GetNewOrderAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeState(int id, string state)
+        {
+            var orderToUpdate = await _dbContext.Order.SingleOrDefaultAsync(order => order.Id == id);
+            
+            if (orderToUpdate == null)
+                return NotFound();
+            
+            var stateParsedCorrectly = Enum.TryParse(state, out OrderState stateToSet);
+            
+            if (string.IsNullOrEmpty(state) || !stateParsedCorrectly)
+            {
+                return BadRequest();
+            }
+
+            if (stateToSet <= orderToUpdate.OrderState)
+            {
+                return BadRequest();
+            }
+
+            orderToUpdate.OrderState = stateToSet;
+            await _dbContext.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Orders/Create
