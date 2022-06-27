@@ -1,115 +1,129 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
 table {
-  border-collapse: collapse;
-  border-radius: 5px;
+    border-collapse: collapse;
+    border-radius: 5px;
 }
 
-table th:first-child {
-  border-radius: 10px 0 0 0;
-}
+    table th:first-child {
+        border-radius: 10px 0 0 0;
+    }
 
-table th:last-child {
-  border-radius: 0 10px 0 0;
-}
+    table th:last-child {
+        border-radius: 0 10px 0 0;
+    }
 
-table tr:last-child td:first-child {
-  border-radius: 0 0 0 10px;
-}
+    table tr:last-child td:first-child {
+        border-radius: 0 0 0 10px;
+    }
 
-table tr:last-child td:last-child {
-  border-radius: 0 0 10px 0;
-}
+    table tr:last-child td:last-child {
+        border-radius: 0 0 10px 0;
+    }
 
 td, th {
-  max-width: 458px;
-  text-align: center;
-  vertical-align: middle;
+    max-width: 458px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .btn-tbl {
-  text-decoration: none;
-  color: white;
-  padding: 5px 10px;
-  background-color: #3b5772;
-  border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    background-color:  rgba(237, 133, 19, 0.95);
+    border-radius: 10px;
 }
 
-.btn-tbl:hover, .btn-tbl:focus {
-  color: white;
-  background-color: #18242f;
-}
+    .btn-tbl:hover, .btn-tbl:focus {
+        color: white;
+        background-color: rgba(237, 133, 19, 0.6049);
+    }
 
 .center {
-  text-align: center;
+    text-align: center;
 }
 
-.center h1 {
-  text-transform: uppercase;
-  font-weight: 700;
-}
+    .center h1 {
+        text-transform: uppercase;
+        font-weight: 700;
+    }
 
 p:first-of-type {
-  margin: 40px 0;
+    margin: 40px 0;
 }
 
 .btn-not-tbl {
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: white;
-  padding: 18px 23px;
-  background-color: #3b5772;
-  border-radius: 16px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: white;
+    padding: 18px 23px;
+    background-color: rgba(237, 133, 19, 0.95);
+    border-radius: 16px;
 }
 
-.btn-not-tbl:hover, .btn-not-tbl:focus {
-  color: white;
-  background-color: #18242f;
-}
+    .btn-not-tbl:hover, .btn-not-tbl:focus {
+        color: white;
+        background-color: rgba(237, 133, 19, 0.6049);
+    }
 
 thead tr {
-  color: #fdfdfd;
-  background-color: #809589;
+    color: #fdfdfd;
+    background-color:dimgray;
 }
 
-thead tr th:nth-child(even) {
-  background-color: #3b5772;
-}
+    thead tr th:nth-child(even) {
+        background-color: rgba(237, 133, 19, 0.95);
+    }
 
-thead tr th:last-child {
-  background-color: #809589;
-}
+    thead tr th:last-child {
+        background-color: dimgray;
+    }
 
 tbody tr {
-  background-color: #dfdfdf;
+    background-color: #dfdfdf;
 }
 
-tbody tr:hover, tbody tr:focus {
-  background-color: #d2d2d2;
-}
+    tbody tr:hover, tbody tr:focus {
+        background-color: #d2d2d2;
+    }
 
-tbody tr:nth-child(even) {
-  background-color: #a5a5a5;
-}
+    tbody tr:nth-child(even) {
+        background-color: #a5a5a5;
+    }
 
-tbody tr:nth-child(even):hover, tbody tr:nth-child(even):focus {
-  background-color: #989898;
-}
+        tbody tr:nth-child(even):hover, tbody tr:nth-child(even):focus {
+            background-color: #989898;
+        }
 
 .details {
-  text-decoration: none;
-  color: #212529;
+    text-decoration: none;
+    color: #212529;
 }
 
-.details:hover, .details:focus {
-  color: #dc3545;
-}
+    .details:hover, .details:focus {
+        color: #dc3545;
+    }
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
-  background-color: #f1f0f0;
-  border-style: none;
+    font-family: 'Source Sans Pro', sans-serif;
+    /*background-color: #f1f0f0;*/
+    border-style: none;
 }
+#vyhladaj {
+    border-collapse: collapse;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    background-color: rgba(237, 133, 19, 0.95);
+    border-radius: 10px;
+    border: none;
+}
+    #vyhladaj:hover, #vyhladaj:focus {
+        color: white;
+        background-color: rgba(237, 133, 19, 0.6049);
+    }
 /*# sourceMappingURL=Books-Index-Base.css.map */
