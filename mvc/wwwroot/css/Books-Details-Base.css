@@ -7,14 +7,14 @@ h1 {
 }
 
 tr:nth-child(even) td:first-of-type {
-  background-color: #809589;
-  max-width: 100px;
-  color: #fdfdfd;
-  font-weight: 700;
+    background-color: rgba(237, 133, 19, 0.95);
+    max-width: 100px;
+    color: #fdfdfd;
+    font-weight: 700;
 }
 
 tr:nth-child(odd) td:first-of-type {
-  background-color: #3b5772;
+  background-color: dimgray;
   max-width: 100px;
   color: #fdfdfd;
   font-weight: 700;
@@ -62,11 +62,11 @@ body {
 }
 
 .buttons a {
-  text-decoration: none;
-  color: white;
-  padding: 10px 15px;
-  background-color: #3b5772;
-  border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    background-color: rgba(237, 133, 19, 0.95);
+    border-radius: 10px;
 }
 
 .buttons a:hover, .buttons a:focus {
